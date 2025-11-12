@@ -8,6 +8,11 @@ jobs:
   build-and-deploy:
     runs-on: [ ubuntu-latest ]
     steps:
+      # - name: Get secrets
+      #   uses: aws-actions/aws-secretsmanager-get-secrets@v2
+      #   with:
+      #     secret-ids: exampleSecretName
+      #     name-transformation: lowercase
       - name: Checkout source
         uses: actions/checkout@v3
       - name: Configure AWS credentials
@@ -49,4 +54,7 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: nodejs-app-service
           cluster: DevCluster
-          wait-for-service-stability: true    
+          wait-for-service-stability: true  
+
+      
+      
